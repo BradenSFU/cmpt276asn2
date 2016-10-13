@@ -41,8 +41,10 @@ class TokimonsController < ApplicationController
   # PATCH/PUT /tokimons/1.json
   def update
     respond_to do |format|
+      attributes = tokimon_params.clone
       tokimon_errors = []
-      tokimon_params.each do |name, value|
+      runningTotal = 0
+      attributes.each do |name, value|
         if ['fly', 'fight', 'fire', 'water', 'electric', 'ice'].include? name
           # @tokimon.errors[:base] << name
           # @tokimon.errors[:base] << value
@@ -55,9 +57,12 @@ class TokimonsController < ApplicationController
           if !(value == "") and value.to_i < 0
             tokimon_errors << "#{name} is smaller than the minimum value of 0."
           end
+          runningTotal += value.to_i
         end
       end
-      if @tokimon.update(tokimon_params) and tokimon_errors.count == 0
+      attributes[:total] = runningTotal
+      if @tokimon.update(attributes) and tokimon_errors.count == 0
+        # @tokimon.total.value = runningTotal
         format.html { redirect_to @tokimon, notice: "Tokimon was successfully updated." }
         format.json { render :show, status: :ok, location: @tokimon }
       else
