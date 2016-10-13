@@ -28,7 +28,7 @@ class TokimonsController < ApplicationController
 
     respond_to do |format|
       if @tokimon.save
-        format.html { redirect_to @tokimon, status: 'Tokimon was successfully created.' }
+        format.html { redirect_to @tokimon, notice: 'Tokimon was successfully created.' }
         format.json { render :show, status: :created, location: @tokimon }
       else
         format.html { render :new }
@@ -41,10 +41,29 @@ class TokimonsController < ApplicationController
   # PATCH/PUT /tokimons/1.json
   def update
     respond_to do |format|
-      if @tokimon.update(tokimon_params)
-        format.html { redirect_to @tokimon, status: 'Tokimon was successfully updated.' }
+      tokimon_errors = []
+      tokimon_params.each do |name, value|
+        if ['fly', 'fight', 'fire', 'water', 'electric', 'ice'].include? name
+          # @tokimon.errors[:base] << name
+          # @tokimon.errors[:base] << value
+          if value == ""
+            tokimon_errors << "#{name} has no value."
+          end
+          if !(value == "") and value.to_i > 100
+            tokimon_errors << "#{name} is greater than the maximum value of 100."
+          end
+          if !(value == "") and value.to_i < 0
+            tokimon_errors << "#{name} is smaller than the minimum value of 0."
+          end
+        end
+      end
+      if @tokimon.update(tokimon_params) and tokimon_errors.count == 0
+        format.html { redirect_to @tokimon, notice: "Tokimon was successfully updated." }
         format.json { render :show, status: :ok, location: @tokimon }
       else
+        tokimon_errors.each do |error|
+          @tokimon.errors[:base] << error
+        end
         format.html { render :edit }
         format.json { render json: @tokimon.errors, status: :unprocessable_entity }
       end
