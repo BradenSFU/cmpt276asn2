@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Tname:</strong>
+  <strong>Name:</strong>
   <%= @trainer.tname %>
 </p>
 
@@ -11,7 +11,7 @@
 </p>
 
 <p>
-  <strong>Tokimon:</strong>
+  <strong>Tokimon:</strong><br/>
   <% @pets.each do |pet| %>
     <%= pet.tname %><br />
   <% end %>

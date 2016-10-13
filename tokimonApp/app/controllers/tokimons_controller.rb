@@ -30,6 +30,8 @@ class TokimonsController < ApplicationController
       # attributes = tokimon_params.clone
       tokimon_errors = []
       runningTotal = 0
+      dominantType = ''
+      dominantVal = -1
       tokimon_params.each do |name, value|
         if ['fly', 'fight', 'fire', 'water', 'electric', 'ice'].include? name
           # @tokimon.errors[:base] << name
@@ -44,9 +46,14 @@ class TokimonsController < ApplicationController
             tokimon_errors << "#{name} is smaller than the minimum value of 0."
           end
           runningTotal += value.to_i
+          if dominantVal < value.to_i
+            dominantType = name
+            dominantVal = value.to_i
+          end
         end
       end
       @tokimon[:total] = runningTotal
+      @tokimon[:elementtype] = dominantType
       if tokimon_errors.count == 0 and @tokimon.save
         format.html { redirect_to @tokimon, notice: 'Tokimon was successfully created.' }
         format.json { render :show, status: :created, location: @tokimon }
@@ -67,6 +74,8 @@ class TokimonsController < ApplicationController
       attributes = tokimon_params.clone
       tokimon_errors = []
       runningTotal = 0
+      dominantType = ''
+      dominantVal = -1
       attributes.each do |name, value|
         if ['fly', 'fight', 'fire', 'water', 'electric', 'ice'].include? name
           # @tokimon.errors[:base] << name
@@ -81,9 +90,14 @@ class TokimonsController < ApplicationController
             tokimon_errors << "#{name} is smaller than the minimum value of 0."
           end
           runningTotal += value.to_i
+          if dominantVal < value.to_i
+            dominantType = name
+            dominantVal = value.to_i
+          end
         end
       end
       attributes[:total] = runningTotal
+      attributes[:elementtype] = dominantType
       if tokimon_errors.count == 0 and @tokimon.update(attributes)
         # @tokimon.total.value = runningTotal
         format.html { redirect_to @tokimon, notice: "Tokimon was successfully updated." }
