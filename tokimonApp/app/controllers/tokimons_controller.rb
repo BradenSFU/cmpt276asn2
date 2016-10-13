@@ -47,7 +47,7 @@ class TokimonsController < ApplicationController
         end
       end
       @tokimon[:total] = runningTotal
-      if @tokimon.save and tokimon_errors.count == 0
+      if tokimon_errors.count == 0 and @tokimon.save
         format.html { redirect_to @tokimon, notice: 'Tokimon was successfully created.' }
         format.json { render :show, status: :created, location: @tokimon }
       else
@@ -84,7 +84,7 @@ class TokimonsController < ApplicationController
         end
       end
       attributes[:total] = runningTotal
-      if @tokimon.update(attributes) and tokimon_errors.count == 0
+      if tokimon_errors.count == 0 and @tokimon.update(attributes)
         # @tokimon.total.value = runningTotal
         format.html { redirect_to @tokimon, notice: "Tokimon was successfully updated." }
         format.json { render :show, status: :ok, location: @tokimon }

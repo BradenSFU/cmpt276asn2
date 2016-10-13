@@ -5,11 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Tname</th>
+      <th>Name</th>
       <th>Trainer</th>
       <th>Weight</th>
       <th>Height</th>
-      <th>Elementtype</th>
+      <th>Type</th>
       <th>Fly</th>
       <th>Fight</th>
       <th>Fire</th>
@@ -25,7 +25,7 @@
     <% @tokimons.each do |tokimon| %>
       <tr>
         <td><%= tokimon.tname %></td>
-        <td><%= tokimon.trainer.tname %></td>
+        <td><%= tokimon.trainer_id %></td>
         <td><%= tokimon.weight %></td>
         <td><%= tokimon.height %></td>
         <td><%= tokimon.elementtype %></td>
@@ -36,9 +36,9 @@
         <td><%= tokimon.electric %></td>
         <td><%= tokimon.ice %></td>
         <td><%= tokimon.total %></td>
-        <td><%= link_to 'Show', tokimon %></td>
+        <td><%= link_to 'View', tokimon %></td>
         <td><%= link_to 'Edit', edit_tokimon_path(tokimon) %></td>
-        <td><%= link_to 'Destroy', tokimon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', tokimon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -47,3 +47,4 @@
 <br>
 
 <%= link_to 'New Tokimon', new_tokimon_path %>
+<%= link_to 'View Trainers', trainers_path %>
