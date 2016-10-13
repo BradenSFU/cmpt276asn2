@@ -27,10 +27,33 @@ class TokimonsController < ApplicationController
     @tokimon = Tokimon.new(tokimon_params)
 
     respond_to do |format|
-      if @tokimon.save
+      # attributes = tokimon_params.clone
+      tokimon_errors = []
+      runningTotal = 0
+      tokimon_params.each do |name, value|
+        if ['fly', 'fight', 'fire', 'water', 'electric', 'ice'].include? name
+          # @tokimon.errors[:base] << name
+          # @tokimon.errors[:base] << value
+          if value == ""
+            tokimon_errors << "#{name} has no value."
+          end
+          if !(value == "") and value.to_i > 100
+            tokimon_errors << "#{name} is greater than the maximum value of 100."
+          end
+          if !(value == "") and value.to_i < 0
+            tokimon_errors << "#{name} is smaller than the minimum value of 0."
+          end
+          runningTotal += value.to_i
+        end
+      end
+      @tokimon[:total] = runningTotal
+      if @tokimon.save and tokimon_errors.count == 0
         format.html { redirect_to @tokimon, notice: 'Tokimon was successfully created.' }
         format.json { render :show, status: :created, location: @tokimon }
       else
+        tokimon_errors.each do |error|
+          @tokimon.errors[:base] << error
+        end
         format.html { render :new }
         format.json { render json: @tokimon.errors, status: :unprocessable_entity }
       end
