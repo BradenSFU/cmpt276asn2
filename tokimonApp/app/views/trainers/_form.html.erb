@@ -1,0 +1,32 @@
+<%= form_for(trainer) do |f| %>
+  <% if trainer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(trainer.errors.count, "error") %> prohibited this trainer from being saved:</h2>
+
+      <ul>
+      <% trainer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tname %>
+    <%= f.text_field :tname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :level %>
+    <%= f.number_field :level %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tokimon_id %>
+    <%= f.number_field :tokimon_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

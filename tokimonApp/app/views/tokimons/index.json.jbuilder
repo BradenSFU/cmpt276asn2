@@ -1,0 +1,1 @@
+json.array! @tokimons, partial: 'tokimons/tokimon', as: :tokimon

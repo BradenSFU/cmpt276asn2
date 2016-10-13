@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tname: MyString
+  level: 1
+  tokimon_id: 1
+
+two:
+  tname: MyString
+  level: 1
+  tokimon_id: 1
