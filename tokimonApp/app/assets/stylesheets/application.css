@@ -40,3 +40,8 @@ h1 {
   border: 0;
 
 }
+
+.actions input {
+  font-size: 16px;
+
+}
