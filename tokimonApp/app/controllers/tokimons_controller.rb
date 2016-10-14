@@ -88,7 +88,7 @@ class TokimonsController < ApplicationController
       @tokimon[:weight] = rand(300)
       @tokimon[:total] = runningTotal
       @tokimon[:elementtype] = dominantType.to_s
-      @tokimon[:tname] = 'Tokichu'
+      @tokimon[:tname] = "Tokichu#{rand(9999)}"
       @tokimon[:trainer_id] = Trainer.first.id
       if @tokimon.save
         format.html { redirect_to edit_tokimon_url(@tokimon), notice: 'Tokimon was successfully created. Now give it a unique name and trainer.' }

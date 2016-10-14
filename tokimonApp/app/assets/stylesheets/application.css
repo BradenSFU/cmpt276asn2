@@ -20,11 +20,14 @@ table {
 }
 table td, table th {
   border: 1px solid black;
+  padding: 5px;
 
 }
 
-.empty {
-  border: 0;
+h1 {
+  background-color: blue;
+  color: white;
+  padding: 5px;
 
 }
 
@@ -34,6 +37,6 @@ table td, table th {
 }
 
 .links tr td {
-  border: 0
+  border: 0;
 
 }
