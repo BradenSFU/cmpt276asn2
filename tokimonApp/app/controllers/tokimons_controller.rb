@@ -67,6 +67,38 @@ class TokimonsController < ApplicationController
     end
   end
 
+  def random
+    @tokimon = Tokimon.new
+
+    respond_to do |format|
+      runningTotal = 0
+      dominantType = :nothing
+      dominantVal = -1
+      [:fly, :fight, :fire, :water, :electric, :ice].each do |stat|
+        @tokimon[stat] = rand(100)
+        if dominantVal < @tokimon[stat]
+          dominantType = stat
+          dominantVal = @tokimon[stat]
+        end
+        runningTotal += @tokimon[stat]
+      end
+      [:weight, :height].each do |stat|
+        @tokimon[stat] = rand(10)
+      end
+      @tokimon[:total] = runningTotal
+      @tokimon[:elementtype] = dominantType.to_s
+      @tokimon[:tname] = 'Tokichu'
+      @tokimon[:trainer_id] = Trainer.first.id
+      if @tokimon.save
+        format.html { redirect_to edit_tokimon_url(@tokimon), notice: 'Tokimon was successfully created. Now give it a unique name and trainer.' }
+        format.json { render :show, status: :created, location: @tokimon }
+      else
+        format.html { render @tokimons }
+        format.json { render json: @tokimon.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /tokimons/1
   # PATCH/PUT /tokimons/1.json
   def update
