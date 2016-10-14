@@ -13,9 +13,11 @@
 <p>
   <strong>Tokimon:</strong><br/>
   <% @pets.each do |pet| %>
-    <%= pet.tname %><br />
+    <%= pet.tname %>
+    <span class="smallbutton"><%= link_to 'View', pet %></span>
+    <br />
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_trainer_path(@trainer) %> |
-<%= link_to 'Back', trainers_path %>
+<b class="normalbutton"><%= link_to 'Edit', edit_trainer_path(@trainer) %> |</b>
+<b class="normalbutton"><%= link_to 'Index', trainers_path %></b>

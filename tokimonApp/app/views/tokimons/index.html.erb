@@ -36,9 +36,9 @@
         <td><%= tokimon.electric %></td>
         <td><%= tokimon.ice %></td>
         <td><%= tokimon.total %></td>
-        <td><%= link_to 'View', tokimon %></td>
-        <td><%= link_to 'Edit', edit_tokimon_path(tokimon) %></td>
-        <td><%= link_to 'Delete', tokimon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="smallbutton"><%= link_to 'View', tokimon %></td>
+        <td class="smallbutton"><%= link_to 'Edit', edit_tokimon_path(tokimon) %></td>
+        <td class="smallbutton"><%= link_to 'Delete', tokimon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -46,6 +46,6 @@
 
 <br>
 
-<%= link_to 'New Tokimon', new_tokimon_path %>
-<%= link_to 'New Random Tokimon', random_tokimon_path %>
-<%= link_to 'View Trainers', trainers_path %>
+<b class="normalbutton"><%= link_to 'New Tokimon', new_tokimon_path %></b>
+<b class="normalbutton"><%= link_to 'New Random Tokimon', random_tokimon_path %></b>
+<b class="normalbutton"><%= link_to 'View Trainers', trainers_path %></b>

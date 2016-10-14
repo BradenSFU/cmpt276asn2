@@ -7,7 +7,9 @@
 
 <p>
   <strong>Trainer:</strong>
-  <%= @trainers.find(@tokimon.trainer_id).tname %>
+  <% trainer = @trainers.find(@tokimon.trainer_id) %>
+  <%= trainer.tname %>
+  <span class="smallbutton"><%= link_to 'View', trainer %></span>
 </p>
 
 <p>
@@ -60,5 +62,5 @@
   <%= @tokimon.total %>
 </p>
 
-<%= link_to 'Edit', edit_tokimon_path(@tokimon) %> |
-<%= link_to 'Back', tokimons_path %>
+<b class="normalbutton"><%= link_to 'Edit', edit_tokimon_path(@tokimon) %> |</b>
+<b class="normalbutton"><%= link_to 'Index', tokimons_path %></b>

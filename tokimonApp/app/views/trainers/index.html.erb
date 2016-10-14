@@ -17,9 +17,9 @@
       <tr>
         <td><%= trainer.tname %></td>
         <td><%= @pets.count/3+1 %></td>
-        <td><%= link_to 'View', trainer %></td>
-        <td><%= link_to 'Edit', edit_trainer_path(trainer) %></td>
-        <td><%= link_to 'Delete', trainer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="smallbutton"><%= link_to 'View', trainer %></td>
+        <td class="smallbutton"><%= link_to 'Edit', edit_trainer_path(trainer) %></td>
+        <td class="smallbutton"><%= link_to 'Delete', trainer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,5 +27,5 @@
 
 <br>
 
-<%= link_to 'New Trainer', new_trainer_path %>
-<%= link_to 'View Tokimon', tokimons_path %>
+<b class="normalbutton"><%= link_to 'New Trainer', new_trainer_path %></b>
+<b class="normalbutton"><%= link_to 'View Tokimon', tokimons_path %></b>

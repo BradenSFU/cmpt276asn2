@@ -84,9 +84,8 @@ class TokimonsController < ApplicationController
         end
         runningTotal += @tokimon[stat]
       end
-      [:weight, :height].each do |stat|
-        @tokimon[stat] = rand(10)
-      end
+      @tokimon[:height] = rand(10)
+      @tokimon[:weight] = rand(300)
       @tokimon[:total] = runningTotal
       @tokimon[:elementtype] = dominantType.to_s
       @tokimon[:tname] = 'Tokichu'
