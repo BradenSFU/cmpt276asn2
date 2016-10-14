@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Tokimon Details</h1>
+
 <p>
   <strong>Name:</strong>
   <%= @tokimon.tname %>
@@ -9,7 +11,7 @@
   <strong>Trainer:</strong>
   <% trainer = @trainers.find(@tokimon.trainer_id) %>
   <%= trainer.tname %>
-  <span class="smallbutton"><%= link_to 'View', trainer %></span>
+  <span class="smallbutton"><%= link_to 'View', trainer %></b>
 </p>
 
 <p>
