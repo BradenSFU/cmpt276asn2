@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tokimons</h1>
+<h1>Tokimon</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Trainer</th>
-      <th>Weight</th>
-      <th>Height</th>
+      <th>Weight (kg)</th>
+      <th>Height (m)</th>
       <th>Type</th>
       <th>Fly</th>
       <th>Fight</th>
@@ -17,12 +17,13 @@
       <th>Electric</th>
       <th>Ice</th>
       <th>Total</th>
-      <th colspan="3"></th>
+      <th class="empty" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tokimons.each do |tokimon| %>
+    <% sorted = @tokimons.sort_by{|tokimon| tokimon.tname.downcase} %>
+    <% sorted.each do |tokimon| %>
       <tr>
         <td><%= tokimon.tname %></td>
         <td><%= @trainers.find(tokimon.trainer_id).tname %></td>
@@ -44,8 +45,12 @@
   </tbody>
 </table>
 
-<br>
+<br/>
 
-<b class="normalbutton"><%= link_to 'New Tokimon', new_tokimon_path %></b>
-<b class="normalbutton"><%= link_to 'New Random Tokimon', random_tokimon_path %></b>
-<b class="normalbutton"><%= link_to 'View Trainers', trainers_path %></b>
+<table class="links">
+  <tr>
+      <td><b class="normalbutton"><%= link_to 'New Tokimon', new_tokimon_path %></b></td>
+      <td><b class="normalbutton"><%= link_to 'New Random Tokimon', random_tokimon_path %></b></td>
+      <td><b class="normalbutton"><%= link_to 'View Trainers', trainers_path %></b></td>
+  </tr>
+</table>

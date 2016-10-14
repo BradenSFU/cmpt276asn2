@@ -12,12 +12,50 @@
 
 <p>
   <strong>Tokimon:</strong><br/>
-  <% @pets.each do |pet| %>
-    <%= pet.tname %>
-    <span class="smallbutton"><%= link_to 'View', pet %></span>
-    <br />
-  <% end %>
 </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Weight (kg)</th>
+        <th>Height (m)</th>
+        <th>Type</th>
+        <th>Fly</th>
+        <th>Fight</th>
+        <th>Fire</th>
+        <th>Water</th>
+        <th>Electric</th>
+        <th>Ice</th>
+        <th>Total</th>
+        <th class="empty" colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% sorted = @pets.sort_by{|tokimon| tokimon.tname.downcase} %>
+      <% sorted.each do |tokimon| %>
+        <tr>
+          <td><%= tokimon.tname %></td>
+          <td><%= tokimon.weight %></td>
+          <td><%= tokimon.height %></td>
+          <td><%= tokimon.elementtype %></td>
+          <td><%= tokimon.fly %></td>
+          <td><%= tokimon.fight %></td>
+          <td><%= tokimon.fire %></td>
+          <td><%= tokimon.water %></td>
+          <td><%= tokimon.electric %></td>
+          <td><%= tokimon.ice %></td>
+          <td><%= tokimon.total %></td>
+          <td class="smallbutton"><%= link_to 'View', tokimon %></td>
+          <td class="smallbutton"><%= link_to 'Edit', edit_tokimon_path(tokimon) %></td>
+          <td class="smallbutton"><%= link_to 'Delete', tokimon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<br/>
 
 <b class="normalbutton"><%= link_to 'Edit', edit_trainer_path(@trainer) %> |</b>
 <b class="normalbutton"><%= link_to 'Index', trainers_path %></b>

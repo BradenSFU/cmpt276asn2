@@ -14,7 +14,26 @@
  *= require_self
  */
 
+table {
+  border-collapse: collapse;
+
+}
+table td, table th {
+  border: 1px solid black;
+
+}
+
+.empty {
+  border: 0;
+
+}
+
 .smallbutton {
-  
+
+
+}
+
+.links tr td {
+  border: 0
 
 }
