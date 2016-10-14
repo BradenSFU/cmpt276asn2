@@ -25,7 +25,7 @@
     <% @tokimons.each do |tokimon| %>
       <tr>
         <td><%= tokimon.tname %></td>
-        <td><%= tokimon.trainer_id %></td>
+        <td><%= @trainers.find(tokimon.trainer_id).tname %></td>
         <td><%= tokimon.weight %></td>
         <td><%= tokimon.height %></td>
         <td><%= tokimon.elementtype %></td>

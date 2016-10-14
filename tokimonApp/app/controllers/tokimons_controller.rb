@@ -5,11 +5,13 @@ class TokimonsController < ApplicationController
   # GET /tokimons.json
   def index
     @tokimons = Tokimon.all
+    @trainers = Trainer.all
   end
 
   # GET /tokimons/1
   # GET /tokimons/1.json
   def show
+    @trainers = Trainer.all
   end
 
   # GET /tokimons/new

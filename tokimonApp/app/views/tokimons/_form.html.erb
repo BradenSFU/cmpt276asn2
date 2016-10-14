@@ -18,7 +18,9 @@
 
   <div class="field">
     <%= f.label :trainer_id %>
-    <%= f.number_field :trainer_id %>
+    <% @trainers = Trainer.all %>
+    <% options = options_from_collection_for_select(@trainers, 'id', 'tname') %>
+    <%= f.select :trainer_id, options %>
   </div>
 
   <div class="field">
